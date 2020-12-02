@@ -1,0 +1,18 @@
+#!/bin/sh
+
+arg=$1
+
+if [[ $1 = "" ]]; then
+    amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1
+    exit
+fi
+
+if [[ $1 = 0 ]]; then
+    amixer sset Master toggle
+    volume=amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1
+    notify-send "Volume is now $volume"
+    exit
+fi
+
+amixer sset Master $1
+notify-send "Volume is now $volume"

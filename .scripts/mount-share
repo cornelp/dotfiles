@@ -1,0 +1,15 @@
+#!/bin/sh
+
+pgrep -x openvpn >/dev/null || sudo openvpn --config ~/Documents/cornel.ovpn --daemon
+
+password=""
+
+if ! [[ $(findmnt -M "Share") ]]; then
+    sudo mount -t cifs //10.8.0.1/Share -o username=cornel,password=$password,uid=1000,gid=1000,vers=1.0 ~/Share
+fi
+
+if ! [[ $(findmnt -M "ParcAuto") ]]; then
+    sudo mount -t cifs //10.8.0.1/v2 -o username=cornel,password=$password,uid=1000,gid=1000,vers=1.0 ~/ParcAuto
+fi
+
+lf ~/Share

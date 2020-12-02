@@ -1,0 +1,9 @@
+#!/bin/sh
+
+sudo umount ~/Share
+sudo umount ~/ParcAuto
+sudo pkill openvpn
+
+sleep 2s
+
+sudo poweroff
