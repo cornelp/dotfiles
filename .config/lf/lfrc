@@ -59,7 +59,7 @@ cmd extract ${{
 
 # use fzf to jump to search a specific location
 cmd fzf_jump ${{
-   res="$(find . -maxdepth 4 ! -path "./11.Documente/*" ! -path "./9.Tehnic/Documente_Tehnic/*" 2>/dev/null | fzf --reverse --header='Jump to location')"
+   res="$(fd . 2>/dev/null | fzf --reverse --header='Jump to location')"
    if [ -f "$res" ]; then
      cmd="select"
    elif [ -d "$res" ]; then
