@@ -108,4 +108,5 @@ source /usr/share/fzf/key-bindings.zsh
 alias l="ls -la"
 alias p="sudo pacman"
 alias dc="sudo docker-compose"
-alias S="./.scripts/mount-share"
+alias S="~/.scripts/mount-share"
+alias gs="git status --short"

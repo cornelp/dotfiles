@@ -1,2 +1,2 @@
 # Own config setup
-Assumes fd is installed
+Assumes fd to be installed

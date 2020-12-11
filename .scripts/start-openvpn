@@ -2,7 +2,4 @@
 
 SERVICE=openvpn
 
-if ! pgrep -x "$SERVICE" >/dev/null
-then
-    sudo "$SERVICE" --config ~/Documents/cornel.ovpn --daemon
-fi
+pgrep -x $SERVICE >/dev/null || sudo $SERVICE --config ~/Documents/cornel.ovpn --daemon
