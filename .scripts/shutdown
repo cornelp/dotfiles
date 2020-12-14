@@ -1,5 +1,9 @@
 #!/bin/sh
 
+choice="$(printf "Yes\\nNo" | dmenu -i -p "Shutdown?")" || exit 1
+
+[[ choice != "No" ]] && exit 1
+
 sudo umount ~/Share
 sudo umount ~/ParcAuto
 sudo pkill openvpn
