@@ -2,4 +2,9 @@
 
 SERVICE=openvpn
 
-pgrep -x $SERVICE >/dev/null || sudo $SERVICE --config ~/Documents/cornel.ovpn --daemon
+(pgrep -x $SERVICE >/dev/null &&
+    notify-send "OpenVPN" "Service is running.") && exit 1 ||
+    notify-send "OpenVPN" "Starting service." &&
+    sudo $SERVICE --config ~/Documents/cornel.ovpn --daemon
+
+(pgrep -x $SERVICE >/dev/null && notify-send "OpenVPN" "Started success.") || notify-send "OpenVPN" "Something went wrong."

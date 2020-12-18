@@ -2,11 +2,13 @@
 
 choice="$(printf "Yes\\nNo" | dmenu -i -p "Shutdown?")" || exit 1
 
-[[ choice != "No" ]] && exit 1
+[[ $choice == "No" ]] && exit 1
 
 sudo umount ~/Share
 sudo umount ~/ParcAuto
 sudo pkill openvpn
+
+notify-send "Bye" "System is shutting down."
 
 sleep 2s
 

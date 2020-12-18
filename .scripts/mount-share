@@ -1,15 +1,21 @@
 #!/bin/sh
 
-pgrep -x openvpn >/dev/null || sudo openvpn --config ~/Documents/cornel.ovpn --daemon
+~/.scripts/start-openvpn
 
-password=""
+password="f2aQjy45@!"
 
 if ! [[ $(findmnt -M "Share") ]]; then
+    notify-send "Share" "Mounting.."
     sudo mount -t cifs //10.8.0.1/Share -o username=cornel,password=$password,uid=1000,gid=1000,vers=1.0 ~/Share
+else
+    notify-send "Share" "Already mounted."
 fi
 
 if ! [[ $(findmnt -M "ParcAuto") ]]; then
+    notify-send "ParcAuto" "Mounting.."
     sudo mount -t cifs //10.8.0.1/v2 -o username=cornel,password=$password,uid=1000,gid=1000,vers=1.0 ~/ParcAuto
+else
+    notify-send "ParcAuto" "Already mounted."
 fi
 
-lf ~/Share
+(! [[ $(findmnt -M "Share") || $(findmnt -M "ParcAuto") ]] && notify-send "Something went wrong.") || (notify-send "Successfully mounted." && vifm ~/Share)
