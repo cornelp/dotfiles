@@ -2,7 +2,7 @@
 
 ~/.scripts/start-openvpn
 
-password="f2aQjy45@!"
+password=""
 
 if ! [[ $(findmnt -M "Share") ]]; then
     notify-send "Share" "Mounting.."
