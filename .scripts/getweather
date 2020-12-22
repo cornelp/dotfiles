@@ -1,9 +1,55 @@
 #!/bin/sh
 
-weather=$(curl -s wttr.in/Bacau?format=1)
+cache_path=~/.cache/weather
 
-if [ $(echo "$weather" | grep -E "(Unknown|curl|HTML)" | wc -l) -gt 0 ]; then
-    echo "-"
-else
-    echo "$weather" | awk '{print $2}'
+# accepted cache interval in seconds
+cache_interval=60*60
+
+# save current timestamp (again, in seconds)
+ts=`date +"%s"`
+
+get_weather () {
+    weather=$(curl -s wttr.in/Bacau?format=1)
+
+    if [ $(echo "$weather" | grep -E "(Unknown|curl|HTML)" | wc -l) -gt 0 ]; then
+        echo "-"
+    else
+        echo $(echo "$weather" | awk '{print $2}')
+    fi
+}
+
+cache_result () {
+    echo "$1;$2" > $cache_path
+}
+
+# if cache is not present
+# write to cache and return result
+if ! [[ -f "$cache_path" ]]; then
+    temp=$(get_weather)
+    cache_result $temp $ts
+    echo $temp
+    exit 1
 fi
+
+# read only first line from cached result
+read -r line < $cache_path
+
+# split line by ";"
+IFS=';' read -ra arr <<< "$line"
+
+# get temp from file
+temp="${arr[0]}"
+
+# get diff from timestamps (current and saved)
+#diff_interval=$ts-${arr[1]}
+diff_interval=$((ts - arr[1]))
+
+# check if cache is older than it should
+if [[ $diff_interval -gt $cache_interval ]]; then
+    temp=$(get_weather)
+
+    # save result to cached file
+    cache_result ${temp} ${ts}
+fi
+
+echo $temp
