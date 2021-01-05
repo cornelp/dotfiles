@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.scripts:/usr/local/bin:$PATH
+export PATH=$HOME/.scripts:/usr/local/bin:$PATH:$GOPATH/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/cornel/.oh-my-zsh"
@@ -93,6 +93,7 @@ source $ZSH/oh-my-zsh.sh
 set -o vi
 
 export EDITOR='nvim'
+export GOPATH=$HOME/Code/go
 
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
@@ -108,6 +109,6 @@ source /usr/share/fzf/key-bindings.zsh
 alias l="ls -la"
 alias p="sudo pacman"
 alias dc="sudo docker-compose"
-alias S="~/.scripts/mount-share"
+alias S="$HOME/.scripts/mount-share"
 alias gs="git status --short"
 alias vf="vifm ."
