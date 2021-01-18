@@ -2,7 +2,7 @@
 export PATH=$HOME/.scripts:/usr/local/bin:$PATH:$GOPATH/bin
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/cornel/.oh-my-zsh"
+export ZSH="/home/cornel/.config/zsh/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -70,6 +70,8 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+autoload -U compinit && compinit
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -110,5 +112,4 @@ alias l="ls -la"
 alias p="sudo pacman"
 alias dc="sudo docker-compose"
 alias S="$HOME/.scripts/mount-share"
-alias gs="git status --short"
 alias vf="vifm ."
