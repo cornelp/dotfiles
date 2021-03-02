@@ -10,6 +10,6 @@ sudo pkill openvpn
 
 notify-send "Bye" "System is shutting down."
 
-sleep 2s
+sleep 1s
 
 sudo poweroff
