@@ -110,7 +110,9 @@ endif
 
 " Set custom status line look
 
-set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
+" original
+" set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
+set statusline="  %t%= %A %10u:%-7g %15E %20d  "
 
 " ------------------------------------------------------------------------------
 
@@ -245,6 +247,7 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
+
 fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
          \ identify %f
 
@@ -510,6 +513,18 @@ nnoremap <c-u> <c-w>x
 source ~/.config/vifm/vifm_devicons/favicons.vifm
 
 command! FZFfind :set noquickview | :execute 'goto' fnameescape(term('fd | fzf --height 10 2>/dev/tty'))
+command! print lp %f
 
 nnoremap <c-f> :FZFfind<cr>
 nnoremap ,q :q<cr>
+
+" single stroke command line
+nmap ; :
+
+" resize panels
+nnoremap - <C-w>5<
+nnoremap _ <C-w>5>
+
+" print file
+nmap <C-p> :!lp %c<CR>
+
