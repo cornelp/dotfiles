@@ -1,0 +1,16 @@
+alias l="ls"
+alias ll="ls -la"
+
+alias gs="git status"
+alias gp="git pull"
+alias gps="git push"
+alias gc="git commit"
+alias gcm="git commit -m"
+alias gch="git checkout"
+alias gd="git diff"
+alias ga="git add"
+
+alias dc="docker-compose"
+alias dce="docker-compose exec"
+alias dcu="docker-compose up -d"
+alias dcd="docker-compose down"

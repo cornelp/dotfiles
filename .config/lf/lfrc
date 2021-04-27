@@ -85,3 +85,10 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
+
+cmd own_rename ${{
+    ext=${f##*.}
+
+    lf -remote "send $id push :rename<space>.$ext"
+    lf -remote "send $id push ${#ext}j"
+}}
