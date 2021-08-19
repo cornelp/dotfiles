@@ -1,7 +1,7 @@
 alias l="ls"
 alias ll="ls -la"
 
-alias gs="git status"
+alias gst="git status"
 alias gp="git pull"
 alias gps="git push"
 alias gc="git commit"
@@ -9,6 +9,10 @@ alias gcm="git commit -m"
 alias gch="git checkout"
 alias gd="git diff"
 alias ga="git add"
+alias gai="(git diff --name-only && git ls-files -o --exclude-standard) | fzf -m | xargs git add" # show only uncommited and untracked files
+alias gdi="git status -s | awk '{ print \$2 }' | fzf -i | xargs git diff"
+alias gchi="git status -s | awk '{ print \$2 }' | fzf -i | xargs git checkout"
+alias grsi="git diff --cached --name-only | fzf -i | xargs git restore --staged"
 
 alias dc="docker-compose"
 alias dce="docker-compose exec"
